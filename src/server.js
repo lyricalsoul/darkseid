@@ -6,7 +6,7 @@ module.exports = () => {
   const app = express()
   app.use(express.json())
 
-  app.post('/render', async (req, res) => {
+  app.get('/render', async (req, res) => {
     req.params = req.query
     await handler.render(req, res)
   })
