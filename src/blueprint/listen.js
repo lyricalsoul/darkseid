@@ -17,7 +17,7 @@ exports.render = async (ctx, { cover, track, album, artist, scrobbles, loved }) 
   {
     ctx.drawImage(img, 15, 15)
   }
-  ctx.fillStyle = invertColor(pSBC(-0.45, color), true)
+  ctx.fillStyle = invertColor(pSBC(0.1, color), true)
   /* TEXT DRAWING */
   {
     const sbl = 30
