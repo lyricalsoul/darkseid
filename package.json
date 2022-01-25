@@ -4,7 +4,8 @@
   "description": "Music tracking.",
   "scripts": {
     "test": "node index.js",
-    "commit": "cz"
+    "commit": "cz",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
