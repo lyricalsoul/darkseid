@@ -3,7 +3,8 @@
   "version": "0.0.4",
   "description": "Music tracking.",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "commit": "cz"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,14 @@
   },
   "publishConfig": {
     "@lyricalsoul:registry": "https://npm.pkg.github.com"
+  },
+  "devDependencies": {
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
