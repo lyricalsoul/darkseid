@@ -11,11 +11,11 @@ module.exports = () => {
     if (req.query.i) requireUncached(`./blueprint/${req.query.i}`)
     await handler.render(req, res)
   })
-  
-  app.listen(port, () => console.log('🎇 darkseid is running at port '+ port.toString()))
+
+  app.listen(port, () => console.log('🎇 darkseid is running at port ' + port.toString()))
 }
 
-function requireUncached(module) {
-    delete require.cache[require.resolve(module)];
-    return require(module);
+function requireUncached (module) {
+  delete require.cache[require.resolve(module)]
+  return require(module)
 }
