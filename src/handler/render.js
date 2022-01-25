@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     ...req.query
   })
   res.setHeader('Content-Type', 'image/png')
-  if (a.cache) {
+  if (a?.cache) {
     res.setHeader('Cache-Control', 's-maxage='+ a.cache)
     res.status(200).send(a.data)
   } else {

@@ -2,7 +2,7 @@ const DPC = 300
 const { loadImage, limitText, pSBC, invertColor } = require('../util')
 const fm = require('../lastfm')
 
-exports.render = async (ctx, { cover, track, album, artist, scrobbles }) => {
+exports.render = async (ctx, { cover, track, album, artist, scrobbles, loved }) => {
   const [img, color] = await loadImage(fm.fmCachedLink(cover, true), DPC, DPC, true)
   
   /* GRADIENT */
@@ -25,15 +25,20 @@ exports.render = async (ctx, { cover, track, album, artist, scrobbles }) => {
     let xOffset = 335
     let name
 
-    name = limitText(ctx, track, 'San Francisco Display Bold', 30, 28, 800-335) || track
+    if (loved) {
+      ctx.font = '23px Apple Emoji'
+      ctx.fillText('♥️', xOffset - 4, yOffset - 35)
+    }
+
+    name = limitText(ctx, track, 'San Francisco Display Bold', 30, 25, 800-335) || track
     ctx.fillText(name, xOffset, yOffset)
     yOffset += sbl // 230 > 260
 
-    name = limitText(ctx, album, 'San Francisco Display Regular', 28, 26, 800-335) || album
+    name = limitText(ctx, album, 'San Francisco Display Regular', 27, 25, 800-335) || album
     ctx.fillText(name, xOffset, yOffset)
     yOffset += sbl // 260 > 290
 
-    name = limitText(ctx, artist, 'San Francisco Display Regular', 28, 26, 800-335) || artist
+    name = limitText(ctx, artist, 'San Francisco Display Regular', 27, 25, 800-335) || artist
     ctx.fillText(name, xOffset, yOffset)
     yOffset += sbl + 20
 
