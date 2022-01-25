@@ -6,7 +6,7 @@ module.exports = class LastFM {
     return a.data
   }
   
-  static fmCachedLink (url) {
-    return `https://lastgramturbo-blueslimee.vercel.app/api/cache/?a=firmeza&m=fmcc&d=${url.split('/')[6].split('.')[0]}`
+  static fmCachedLink (url, id) {
+    return `https://lastgramturbo-blueslimee.vercel.app/api/cache/?a=firmeza&m=fmcc&d=${id ? url : url.split('/')[6].split('.')[0]}`
   }
 }
