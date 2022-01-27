@@ -5,11 +5,14 @@ global.__fontRegs = false
 module.exports = async function render (id, data = {}) {
   if (!global.__fontRegs) {
     global.__fontRegs = true
-    GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Apple/AppleColorEmoji.ttf'), 'Apple Emoji')
+    // Main fonts: San Francisco family
     GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Apple/SF/SF-Pro-Display-Regular.otf'), 'San Francisco Display Regular')
-    // lobalFonts.registerFromPath(`${__dirname}/../assets/vendor/Apple/SF/SF-Pro-Display-RegularItalic.otf`, 'San Francisco Display Regular Italic')
     GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Apple/SF/SF-Pro-Display-Medium.otf'), 'San Francisco Display Medium')
     GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Apple/SF/SF-Pro-Display-Bold.otf'), 'San Francisco Display Bold')
+    // Emoji support
+    GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Apple/AppleColorEmoji.ttf'), 'Apple Emoji')
+    // Fallback font (Google Noto merged)
+    GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/fonts/GoNotoCurrent.ttf'), 'Google Noto')
   }
 
   try {

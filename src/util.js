@@ -70,7 +70,7 @@ exports.loadImage = async (url, w, h, getColor = false) => {
 }
 
 function limitText (ctx, text, font, size, minSize, maxSize) {
-  ctx.font = `${size}px ${font}`
+  ctx.font = `${size}px ${font}, Google Noto, Apple Emoji`
   const textSize = ctx.measureText(text).width
   if (textSize <= maxSize) {
     return undefined
