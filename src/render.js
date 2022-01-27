@@ -10,9 +10,9 @@ module.exports = async function render (id, data = {}) {
     GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Apple/SF/SF-Pro-Display-Medium.otf'), 'San Francisco Display Medium')
     GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Apple/SF/SF-Pro-Display-Bold.otf'), 'San Francisco Display Bold')
     // Emoji support
-    GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Apple/AppleColorEmoji.ttf'), 'Apple Emoji')
+    GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Google/NotoColorEmoji.ttf'), 'Apple Emoji')
     // Fallback font (Google Noto merged)
-    GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/fonts/GoNotoCurrent.ttf'), 'Google Noto')
+    GlobalFonts.registerFromPath(path.join(__dirname, '/../assets/vendor/Google/NotoCurrent.ttf'), 'Google Noto')
   }
 
   try {
