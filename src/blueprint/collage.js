@@ -10,7 +10,7 @@ exports.render = async (ctx, { w, h, period = 'overall', type = 'album', usernam
   const data = await fm.rpc(`userGetTop${type.split('').map((a, b) => b === 0 ? a.toUpperCase() : a).join('')}s`, 3600, username, w * h, period)
   console.log('done: ' + data[0].name)
   if (!data || data.error) return null
-  const toDraw = data.map((a, i) => {
+  let toDraw = data.map((a, i) => {
     const obj = { ...a, x: dr * DPC, y: cy }
     dr++
     if (dr === w) {
@@ -19,30 +19,42 @@ exports.render = async (ctx, { w, h, period = 'overall', type = 'album', usernam
     }
     return obj
   })
-
+  if (type === 'artist') {
+    const covers = await fm.getArtistsData(toDraw)
+    toDraw = toDraw.map((z, i) => {
+      z.url = fm.spotifyCachedLink(covers[i]['spotify_images'][1])
+      return z
+    })
+  } else {
+    toDraw = toDraw.map(a => {
+      a.url = fm.fmCachedLink(a.url)
+      return a
+    })
+  }
   await Promise.allSettled(toDraw.map(async (item) => {
     console.log(`drawing image for ${item.name}`)
-    const img = await loadImage(fm.fmCachedLink(item.url), DPC, DPC)
+    const img = await loadImage(item.url, DPC, DPC)
     console.log(`done for ${item.name}`)
     ctx.drawImage(img, item.x, item.y)
-    if (flags.includes('nolabels')) return
-    const nn = limitText(ctx, item.name, 'San Francisco Display Bold', 19, 17, 280)
-    if (nn) item.name = nn
-    ctx.strokeStyle = 'black'
-    ctx.lineWidth = 7
-    ctx.strokeText(item.name, item.x + 10, item.y + 20)
-    ctx.fillStyle = 'white'
-    ctx.fillText(item.name, item.x + 10, item.y + 20)
+    if (!flags.includes('nolabels')) {
+      const nn = limitText(ctx, item.name, 'San Francisco Display Bold', 19, 17, 280)
+      if (nn) item.name = nn
+      ctx.strokeStyle = 'black'
+      ctx.lineWidth = 7
+      ctx.strokeText(item.name, item.x + 10, item.y + 20)
+      ctx.fillStyle = 'white'
+      ctx.fillText(item.name, item.x + 10, item.y + 20)
 
-    ctx.font = '17px San Francisco Display Medium'
-    ctx.strokeStyle = 'black'
-    ctx.lineWidth = 7
-    ctx.strokeText(`${item.scrobbles} scrobbles`, item.x + 10, item.y + 40)
-    ctx.fillStyle = 'white'
-    ctx.fillText(`${item.scrobbles} scrobbles`, item.x + 10, item.y + 40)
+      ctx.font = '17px San Francisco Display Medium'
+      ctx.strokeStyle = 'black'
+      ctx.lineWidth = 7
+      ctx.strokeText(`${item.scrobbles} scrobbles`, item.x + 10, item.y + 40)
+      ctx.fillStyle = 'white'
+      ctx.fillText(`${item.scrobbles} scrobbles`, item.x + 10, item.y + 40)
+    }
   }))
 }
 
 exports.info = {
-  dimensions: ({ w, h }) => [w * DPC, h * DPC]
+  dimensions: ({ w, h, type }) => [w * DPC, h * DPC]
 }
