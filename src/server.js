@@ -1,6 +1,7 @@
 const handler = require('./handler')
 const express = require('express')
 const port = 3000
+require('dotenv').config()
 
 module.exports = () => {
   const app = express()

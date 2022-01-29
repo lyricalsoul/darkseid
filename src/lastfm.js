@@ -1,7 +1,9 @@
 const axios = require('axios')
 
 module.exports = class LastFM {
-  this.apiURL = process.env.LASTGRAM_CACHE_SERVICE_URL
+  static get apiURL() {
+    return process.env.LASTGRAM_CACHE_SERVICE_URL
+  }
   
   static async rpc (method, lifetime, ...data) {
     const a = await axios.get(`${this.apiURL}&m=fmco&l=${lifetime}&d=${method}&p=${encodeURIComponent(JSON.stringify(data))}`)
