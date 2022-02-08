@@ -21,8 +21,8 @@ module.exports = async function render (id, data = {}) {
     const canvas = createCanvas(w, h)
     const ctx = canvas.getContext('2d')
     const c = await a.render(ctx, data)
-    if (c) return { ...c, data: canvas.toBuffer('image/png') }
-    else return canvas.toBuffer('image/png')
+    if (c) return { ...c, data: canvas.toBuffer('image/jpeg', 76) }
+    else return canvas.toBuffer('image/jpeg', 76)
   } catch (e) {
     console.log(e.stack)
     return null

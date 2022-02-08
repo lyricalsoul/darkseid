@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     flagsRaw: req.query.f,
     ...req.query
   })
-  res.setHeader('Content-Type', 'image/png')
+  res.setHeader('Content-Type', 'image/jpeg')
   if (a?.cache) {
     res.setHeader('Cache-Control', 's-maxage=' + a.cache)
     res.status(200).send(a.data)
