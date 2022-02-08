@@ -40,17 +40,17 @@ exports.render = async (ctx, { w, h, period = 'overall', type = 'album', usernam
       const nn = limitText(ctx, item.name, 'San Francisco Display Bold', 19, 17, 280)
       if (nn) item.name = nn
       ctx.strokeStyle = 'black'
-      ctx.lineWidth = 7
-      ctx.strokeText(item.name, item.x + 10, item.y + 20)
+      ctx.lineWidth = 5
+      ctx.strokeText(item.name, item.x + 15, item.y + 25)
       ctx.fillStyle = 'white'
-      ctx.fillText(item.name, item.x + 10, item.y + 20)
+      ctx.fillText(item.name, item.x + 15, item.y + 25)
 
       ctx.font = '17px San Francisco Display Medium'
       ctx.strokeStyle = 'black'
-      ctx.lineWidth = 7
-      ctx.strokeText(`${item.scrobbles} scrobbles`, item.x + 10, item.y + 40)
+      ctx.lineWidth = 5
+      ctx.strokeText(`${item.scrobbles} scrobbles`, item.x + 15, item.y + 45)
       ctx.fillStyle = 'white'
-      ctx.fillText(`${item.scrobbles} scrobbles`, item.x + 10, item.y + 40)
+      ctx.fillText(`${item.scrobbles} scrobbles`, item.x + 15, item.y + 45)
     }
   }))
 }
