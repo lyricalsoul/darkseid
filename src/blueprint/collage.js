@@ -37,20 +37,20 @@ exports.render = async (ctx, { w, h, period = 'overall', type = 'album', usernam
     console.log(`done for ${item.name}`)
     ctx.drawImage(img, item.x, item.y)
     if (!flags.includes('nolabels')) {
-      const nn = limitText(ctx, item.name, 'San Francisco Display Bold', 19, 17, 280)
+      const nn = limitText(ctx, item.name, 'San Francisco Display Bold', 18, 16, 280)
       if (nn) item.name = nn
       ctx.strokeStyle = 'black'
       ctx.lineWidth = 5
-      ctx.strokeText(item.name, item.x + 15, item.y + 25)
+      ctx.strokeText(item.name, item.x + 15, item.y + 20)
       ctx.fillStyle = 'white'
-      ctx.fillText(item.name, item.x + 15, item.y + 25)
+      ctx.fillText(item.name, item.x + 15, item.y + 20)
 
-      ctx.font = '17px San Francisco Display Medium'
+      ctx.font = '16px San Francisco Display Medium'
       ctx.strokeStyle = 'black'
       ctx.lineWidth = 5
-      ctx.strokeText(`${item.scrobbles} scrobbles`, item.x + 15, item.y + 45)
+      ctx.strokeText(`${item.scrobbles} scrobbles`, item.x + 15, item.y + 40)
       ctx.fillStyle = 'white'
-      ctx.fillText(`${item.scrobbles} scrobbles`, item.x + 15, item.y + 45)
+      ctx.fillText(`${item.scrobbles} scrobbles`, item.x + 15, item.y + 40)
     }
   }))
 }
