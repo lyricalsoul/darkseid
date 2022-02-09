@@ -35,7 +35,7 @@ exports.render = async (ctx, { w, h, period = 'overall', type = 'album', usernam
     const img = await loadImage(item.url, DPC, DPC)
     ctx.drawImage(img, item.x, item.y)
     if (!flags.includes('nolabels')) {
-      const nn = limitText(ctx, item.name, 'San Francisco Display Bold', 18, 18, 280)
+      const nn = limitText(ctx, item.name, 'San Francisco Display Bold', 22, 19, 280)
       if (nn) item.name = nn
       ctx.strokeStyle = 'black'
       ctx.lineWidth = 6
@@ -43,7 +43,7 @@ exports.render = async (ctx, { w, h, period = 'overall', type = 'album', usernam
       ctx.fillStyle = 'white'
       ctx.fillText(item.name, item.x + 10, item.y + 25)
 
-      ctx.font = '17px San Francisco Display Medium'
+      ctx.font = '21px San Francisco Display Medium'
       ctx.strokeStyle = 'black'
       ctx.lineWidth = 6
       ctx.strokeText(`${item.scrobbles} scrobbles`, item.x + 10, item.y + 45)
