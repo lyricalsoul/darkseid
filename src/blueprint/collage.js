@@ -32,25 +32,23 @@ exports.render = async (ctx, { w, h, period = 'overall', type = 'album', usernam
     })
   }
   await Promise.allSettled(toDraw.map(async (item) => {
-    console.log(`drawing image for ${item.name}`)
     const img = await loadImage(item.url, DPC, DPC)
-    console.log(`done for ${item.name}`)
     ctx.drawImage(img, item.x, item.y)
     if (!flags.includes('nolabels')) {
-      const nn = limitText(ctx, item.name, 'San Francisco Display Bold', 18, 16, 280)
+      const nn = limitText(ctx, item.name, 'San Francisco Display Bold', 18, 18, 280)
       if (nn) item.name = nn
       ctx.strokeStyle = 'black'
-      ctx.lineWidth = 5
-      ctx.strokeText(item.name, item.x + 15, item.y + 20)
+      ctx.lineWidth = 6
+      ctx.strokeText(item.name, item.x + 10, item.y + 25)
       ctx.fillStyle = 'white'
-      ctx.fillText(item.name, item.x + 15, item.y + 20)
+      ctx.fillText(item.name, item.x + 10, item.y + 25)
 
-      ctx.font = '16px San Francisco Display Medium'
+      ctx.font = '17px San Francisco Display Medium'
       ctx.strokeStyle = 'black'
-      ctx.lineWidth = 5
-      ctx.strokeText(`${item.scrobbles} scrobbles`, item.x + 15, item.y + 40)
+      ctx.lineWidth = 6
+      ctx.strokeText(`${item.scrobbles} scrobbles`, item.x + 10, item.y + 45)
       ctx.fillStyle = 'white'
-      ctx.fillText(`${item.scrobbles} scrobbles`, item.x + 15, item.y + 40)
+      ctx.fillText(`${item.scrobbles} scrobbles`, item.x + 10, item.y + 45)
     }
   }))
 }
