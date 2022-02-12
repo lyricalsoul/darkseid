@@ -1,6 +1,7 @@
 const { createCanvas, GlobalFonts } = require('@napi-rs/canvas')
 const path = require('path')
 global.__fontRegs = false
+const COMPRESSION_LEVEL = process.env.DS_COMPRESSION_LVL || 80
 
 module.exports = async function render (id, data = {}) {
   if (!global.__fontRegs) {
@@ -21,8 +22,8 @@ module.exports = async function render (id, data = {}) {
     const canvas = createCanvas(w, h)
     const ctx = canvas.getContext('2d')
     const c = await a.render(ctx, data)
-    if (c) return { ...c, data: canvas.toBuffer('image/jpeg', 100) }
-    else return canvas.toBuffer('image/jpeg', 100)
+    if (c) return { ...c, data: canvas.toBuffer('image/jpeg', COMPRESSION_LEVEL) }
+    else return canvas.toBuffer('image/jpeg', COMPRESSION_LEVEL)
   } catch (e) {
     console.log(e.stack)
     return null
