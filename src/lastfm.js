@@ -26,6 +26,7 @@ module.exports = class LastFM {
   }
 
   static fmCachedLink (url, id) {
+    if (!url) url = 'https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png'
     return `${this.apiURL}&m=fmcc&d=${id ? url : url.split('/')[6].split('.')[0]}`
   }
   
