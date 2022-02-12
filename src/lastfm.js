@@ -14,6 +14,11 @@ module.exports = class LastFM {
     const z = await axios.post(`https://resource.musicorumapp.com/find/artists`, { artists: data.map(z => z.name ? z.name : z) })
     return z.data
   }
+  
+  static async getTracksData(tracks) {
+    const z = await axios.post(`https://resource.musicorumapp.com/find/tracks`, { tracks })
+    return z.data
+  }
 
   static fmCachedLink (url, id) {
     return `${this.apiURL}&m=fmcc&d=${id ? url : url.split('/')[6].split('.')[0]}`
