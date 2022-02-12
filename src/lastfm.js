@@ -1,6 +1,10 @@
 const axios = require('axios')
 
 module.exports = class LastFM {
+  static get fallback() {
+    return 'https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png'
+  }
+  
   static get apiURL() {
     return process.env.LASTGRAM_CACHE_SERVICE_URL
   }
@@ -16,6 +20,7 @@ module.exports = class LastFM {
   }
   
   static async getTracksData(tracks) {
+    if (!tracks) return
     const z = await axios.post(`https://resource.musicorumapp.com/find/tracks`, { tracks })
     return z.data
   }
