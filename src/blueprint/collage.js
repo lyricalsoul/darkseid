@@ -33,9 +33,8 @@ exports.render = async (ctx, { w, h, period = 'overall', type = 'album', usernam
     })
   } else {
     const covers = await fm.getTracksData(toDraw.map(z => {
-      return { name: z.name, artist: z.artist.name }
+      return { name: z.name, artist: z.artist }
     }))
-    
     toDraw = toDraw.map((z, i) => {
       z.url = fm.spotifyCachedLink(covers[i]?.['spotify_covers']?.[1]) || fm.fallback
       return z

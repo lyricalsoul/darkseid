@@ -30,6 +30,7 @@ module.exports = class LastFM {
   }
   
   static spotifyCachedLink (url, id) {
+    if (!url) return
     return `${this.apiURL}&m=spcc&d=${id ? url : url.split('/')[url.split('/').length - 1].replace('/', '')}`
   }
 }
