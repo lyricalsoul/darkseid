@@ -22,7 +22,7 @@
     "@napi-rs/canvas-linux-x64-gnu": "^0.1.19",
     "axios": "^0.25.0",
     "dotenv": "^14.2.0",
-    "express": "^4.17.2"
+    "express": "^4.17.3"
   },
   "publishConfig": {
     "@lyricalsoul:registry": "https://npm.pkg.github.com"
